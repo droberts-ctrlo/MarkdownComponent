@@ -25,6 +25,7 @@
   "module": "dist/MarkdownComponent.js",
   "types": "dist/MarkdownComponent.d.ts",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint src"
   }
 }

@@ -1,4 +1,4 @@
-# Markdown Component
+# Markdown Component [![JS Tests](https://github.com/droberts-ctrlo/MarkdownComponent/actions/workflows/tests.yml/badge.svg)](https://github.com/droberts-ctrlo/MarkdownComponent/actions/workflows/tests.yml)
 
 This component is user to provide a preview of markdown content.
 

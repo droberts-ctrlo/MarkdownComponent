@@ -1,6 +1,6 @@
 {
   "name": "@davetheitguy/markdown-component",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.24.7",
@@ -18,8 +18,8 @@
     "typescript-eslint": "^7.12.0"
   },
   "dependencies": {
-    "@davetheitguy/common": "^1.0.4",
-    "@davetheitguy/markdown-formatter": "^1.0.3",
+    "@davetheitguy/common": "^1.0.8",
+    "@davetheitguy/markdown-formatter": "^1.0.6",
     "jquery": "^3.7.1"
   },
   "module": "dist/MarkdownComponent.js",

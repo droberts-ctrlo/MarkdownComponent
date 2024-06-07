@@ -1,4 +1,6 @@
-# Markdown Component [![JS Tests](https://github.com/droberts-ctrlo/MarkdownComponent/actions/workflows/tests.yml/badge.svg)](https://github.com/droberts-ctrlo/MarkdownComponent/actions/workflows/tests.yml)
+# Markdown Component
+
+[![JS Tests](https://github.com/droberts-ctrlo/MarkdownComponent/actions/workflows/tests.yml/badge.svg)](https://github.com/droberts-ctrlo/MarkdownComponent/actions/workflows/tests.yml)
 
 This component is user to provide a preview of markdown content.
 
@@ -18,3 +20,7 @@ import { MarkdownComponent } from '@davetheitguy/markdown';
 
 new MarkdownComponent($('#input'),$('#preview'), {default: 'This is a default message'});
 ```
+
+## Testing
+
+Jest testing has been removed due to an issue with JEST and ESM, although unit tests do exist

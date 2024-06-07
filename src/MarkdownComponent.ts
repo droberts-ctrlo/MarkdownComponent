@@ -1,5 +1,5 @@
 import { ElementOrJQueryElement, TOrJQuery } from "@davetheitguy/common";
-import {Markdown} from "@davetheitguy/markdown-formatter";
+import { Markdown } from "@davetheitguy/markdown-formatter";
 
 /**
  * The configuration for the markdown previewer
@@ -33,7 +33,8 @@ export default class MarkdownComponent {
      * @param input The input to render as markdown
      * @returns The rendered markdown, or the default as defined in the config
      */
-    private renderMarkdown(input?: string): string {
+    renderMarkdown(input?: string): string {
+        console.log("Input",input);
         if (!input || input.length === 0) {
             return this.config.default ?? '<p class="text-info">Nothing to preview!</p>';
         }
@@ -48,15 +49,15 @@ export default class MarkdownComponent {
      */
     private initMarkdown(input: JQuery<HTMLInputElement | HTMLTextAreaElement>, preview: JQuery<HTMLElement>) {
         $(() => {
-            const updatePreview = () => {
+            const markdownText = input.val();
+            const htmlText = this.renderMarkdown(markdownText as string);
+            preview.html(htmlText);
+
+            input.on("keyup", () => {
                 const markdownText = input.val();
                 const htmlText = this.renderMarkdown(markdownText as string);
                 preview.html(htmlText);
-            };
-
-            updatePreview();
-
-            input.on("keyup", updatePreview);
+            });
         });
     }
 }

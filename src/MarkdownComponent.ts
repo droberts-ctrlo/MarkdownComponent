@@ -1,4 +1,3 @@
-import { ElementOrJQueryElement, TOrJQuery } from "@davetheitguy/common";
 import { Markdown } from "@davetheitguy/markdown-formatter";
 
 /**
@@ -19,12 +18,12 @@ export default class MarkdownComponent {
      * @param config The configuration for the markdown previewer
      */
     constructor(
-        input: TOrJQuery<HTMLInputElement | HTMLTextAreaElement>,
-        preview: ElementOrJQueryElement,
+        input: HTMLInputElement | HTMLTextAreaElement | JQuery<HTMLInputElement | HTMLTextAreaElement>,
+        preview: HTMLElement|JQuery<HTMLElement>,
         private config: MarkdownConfig = {}
     ) {
-        const inputAsJQ = $(input);
-        const previewAsJQ = $(preview);
+        const inputAsJQ = input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement ? $(input) :  input;
+        const previewAsJQ = preview instanceof HTMLElement?$(preview): preview;
         this.initMarkdown(inputAsJQ, previewAsJQ);
     }
 

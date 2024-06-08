@@ -1,6 +1,6 @@
 import { Markdown } from "@davetheitguy/markdown-formatter";
 import MarkdownComponent from "./MarkdownComponent";
-import {describe, it, expect} from "vitest";
+import {describe, it, expect} from "@jest/globals";
 
 declare global {
     interface Window {
@@ -8,6 +8,7 @@ declare global {
     }
 }
 
+window = window || global
 window.$ = window.$ || require("jquery");
 
 describe("MarkdownComponent", () => {

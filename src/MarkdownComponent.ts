@@ -18,13 +18,11 @@ export default class MarkdownComponent {
      * @param config The configuration for the markdown previewer
      */
     constructor(
-        input: HTMLInputElement | HTMLTextAreaElement | JQuery<HTMLInputElement | HTMLTextAreaElement>,
-        preview: HTMLElement|JQuery<HTMLElement>,
+        input: HTMLInputElement | HTMLTextAreaElement,
+        preview: HTMLElement,
         private config: MarkdownConfig = {}
     ) {
-        const inputAsJQ = input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement ? $(input) :  input;
-        const previewAsJQ = preview instanceof HTMLElement?$(preview): preview;
-        this.initMarkdown(inputAsJQ, previewAsJQ);
+        this.initMarkdown(input, preview);
     }
 
     /**
@@ -33,11 +31,13 @@ export default class MarkdownComponent {
      * @returns The rendered markdown, or the default as defined in the config
      */
     renderMarkdown(input?: string): string {
-        console.log("Input",input);
+        console.log("Input", input);
         if (!input || input.length === 0) {
             return this.config.default ?? '<p class="text-info">Nothing to preview!</p>';
         }
-        const mdEncoded = $('<span>').text(input.replace(/[\n\r]+/, "\n\n")).html();
+        const element = document.createElement("span");
+        element.innerHTML = input.replace(/[\n\r]+/, "\n\n");
+        const mdEncoded = element.innerHTML;
         return Markdown`${mdEncoded}`;
     }
 
@@ -46,17 +46,15 @@ export default class MarkdownComponent {
      * @param input The input element to watch for changes
      * @param preview The element to render the markdown in
      */
-    private initMarkdown(input: JQuery<HTMLInputElement | HTMLTextAreaElement>, preview: JQuery<HTMLElement>) {
-        $(() => {
-            const markdownText = input.val();
-            const htmlText = this.renderMarkdown(markdownText as string);
-            preview.html(htmlText);
+    private initMarkdown(input: HTMLInputElement | HTMLTextAreaElement, preview: HTMLElement) {
+        const markdownText = input.value;
+        const htmlText = this.renderMarkdown(markdownText as string);
+        preview.innerHTML = htmlText;
 
-            input.on("keyup", () => {
-                const markdownText = input.val();
-                const htmlText = this.renderMarkdown(markdownText as string);
-                preview.html(htmlText);
-            });
+        input.addEventListener("keyup", () => {
+            const markdownText = input.value;
+            const htmlText = this.renderMarkdown(markdownText as string);
+            preview.innerHTML = htmlText;
         });
     }
 }
